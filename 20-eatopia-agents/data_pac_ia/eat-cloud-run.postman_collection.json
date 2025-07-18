@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "eat-cloud-run-collection",
+		"name": "Eat Cloud Run API",
+		"description": "Coleção para testar a API do Data Pac IA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Data Pac",
+			"item": [
+				{
+					"name": "Get Tables",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/data_pac/tables",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"data_pac",
+								"tables"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BigQuery",
+			"item": [
+				{
+					"name": "Get Schema",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/bigquery/schema/{{dataset}}/{{table}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bigquery",
+								"schema",
+								"{{dataset}}",
+								"{{table}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Easy Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [\"id\", \"nome\"],\n  \"filters\": [],\n  \"aggFields\": [],\n  \"dateField\": null,\n  \"limit\": 10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/bigquery/easy-query/{{dataset}}/{{table}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"bigquery",
+								"easy-query",
+								"{{dataset}}",
+								"{{table}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "dataset",
+			"value": "ecommerce",
+			"type": "string"
+		},
+		{
+			"key": "table",
+			"value": "usuarios",
+			"type": "string"
+		}
+	]
+} 
